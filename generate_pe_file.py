@@ -32,16 +32,13 @@ for svg, unicode_value in icon_mapping:
 
 def create_pe_file():
     str_ = f'''
-# フォルダ内のSVGファイルを一括処理する例
-
-# フォントを作成
 New()
 '''
     for svg, unicode_value in icon_mapping:
-        str_ += f'Import("{svg}", "{unicode_value}")\n'
+        str_ += f'Import("{svg}", 0x{unicode_value})\n'
 
     str_ += '''
-# TTFを生成
+
 SetFontNames("CustomFont")
 Generate("output_font.ttf")
 Quit()
